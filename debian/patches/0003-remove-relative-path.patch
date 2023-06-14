@@ -1,0 +1,13 @@
+autopkgtest should take installed lib
+
+--- a/test/setup.rb
++++ b/test/setup.rb
+@@ -10,7 +10,7 @@
+   Test::Unit::TestCase.test_order = :random
+ end
+ 
+-require File.expand_path("../../lib/logging", __FILE__)
++require "logging"
+ 
+ module TestLogging
+   module LoggingTestCase
