@@ -1,0 +1,29 @@
+From: Hleb Valoshka <375gnu@gmail.com>
+Date: Wed, 15 Jul 2015 12:58:23 +0300
+Subject: Disable assertions not working when run by root
+
+	Root user can write to readonly files
+---
+ test/appenders/test_file.rb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/test/appenders/test_file.rb
++++ b/test/appenders/test_file.rb
+@@ -30,7 +30,7 @@
+       log = File.join(TMP, 'uw_dir', 'file.log')
+       assert_raise(ArgumentError) do
+         Logging.appenders.file(log).class.assert_valid_logfile(log)
+-      end
++      end if Process.euid != 0
+ 
+       log = File.join(TMP, 'dir')
+       assert_raise(ArgumentError) do
+@@ -40,7 +40,7 @@
+       log = File.join(TMP, 'uw_file')
+       assert_raise(ArgumentError) do
+         Logging.appenders.file(log).class.assert_valid_logfile(log)
+-      end
++      end if Process.euid != 0
+ 
+       log = File.join(TMP, 'file.log')
+       assert Logging.appenders.file(log).class.assert_valid_logfile(log)

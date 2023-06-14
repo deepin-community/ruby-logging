@@ -1,15 +1,29 @@
-Source: template-repository
-Section: unknown
+Source: ruby-logging
+Section: ruby
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Hleb Valoshka <375gnu@gmail.com>
+Build-Depends: debhelper (>= 11~),
+               gem2deb,
+               ruby-little-plugger (>= 1.1),
+               ruby-multi-json (>= 1.10)
 Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-ruby-extras/ruby-logging.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-logging.git
+Homepage: http://rubygems.org/gems/logging
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: ruby-logging
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         ruby-little-plugger (>= 1.1),
+         ruby-multi-json (>= 1.10),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: flexible and extendable logging library for Ruby
+ Logging is a flexible logging library for use in Ruby programs based on the
+ design of Java's log4j library. It features a hierarchical logging system,
+ custom level names, multiple output destinations per log event, custom
+ formatting, and more.
